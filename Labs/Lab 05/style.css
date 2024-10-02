@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightgray;
+}
+#dataTable {
+    margin: 10px;
+    border: 1px solid #030303;
+}
+#dataTable th {
+    background-color: navy;
+    font-weight: bold;
+    color: beige;
+}
+#dataTable td {
+    padding: 5px;
+}
+.evenRow {
+    background-color: lightblue;
+}
+.oddRow {
+    background-color: lightskyblue;
+}
