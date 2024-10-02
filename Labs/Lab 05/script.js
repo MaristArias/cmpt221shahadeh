@@ -20,14 +20,17 @@ function populateTable(data) {
 
         const idCell = document.createElement('td');
         idCell.textContent = person.id;
+        idCell.style.textAlign = 'right';
         row.appendChild(idCell);
 
         const nameCell = document.createElement('td');
         nameCell.textContent = person.name;
+        idCell.style.textAlign = 'left';
         row.appendChild(nameCell);
 
         const ageCell = document.createElement('td');
         ageCell.textContent = person.age;
+        idCell.style.textAlign = 'center';
         row.appendChild(ageCell);
 
         tableBody.appendChild(row);
