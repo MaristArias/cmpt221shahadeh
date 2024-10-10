@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Lab 6 </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>HTML Table</h2>
+<form name="addForm">
+    <label for="company">Company: </label>
+    <input id="company" type="text" required />
+    <label for="contact">Contact: </label>
+    <input id="contact" type="text" required />
+    <label for="country">Country: </label>
+    <input id="country" type="text" required />
+    <input type="reset" value="Clear" />
+    <input type="submit" value="Add" />
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th id="companyH">Company</th>
+        <th id="contactH">Contact</th>
+        <th id="countryH">Country</th>
+    </tr>
+    </thead>
+    <tbody id="tBody">
+    </tbody>
+</table>
+<script src="script.js"></script>
+</body>
+</html>
