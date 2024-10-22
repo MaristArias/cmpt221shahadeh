@@ -1,1 +1,29 @@
-    
+* .navContainer {
+  text-align: center;
+}
+body {
+  background-color: black;
+}
+.navMenu {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+#regButton {
+  font-weight: bold;
+  background-color: rgb(164, 158, 158);
+}
+
+#myForm {
+  text-align: center;
+  border: 2px solid rgb(5, 197, 197);
+  border-radius: 5px;
+  background-color: rgb(5, 197, 197);
+  padding: 20px;
+}
+
+.subresback {
+  text-align: center;
+}
