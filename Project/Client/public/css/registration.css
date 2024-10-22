@@ -18,10 +18,13 @@ body {
 
 #myForm {
   text-align: center;
-  border: 2px solid rgb(5, 197, 197);
+  border: 2px solid rgb(15, 5, 197);
   border-radius: 5px;
-  background-color: rgb(5, 197, 197);
+  background-color: rgb(15, 5, 197);
   padding: 20px;
+}
+label {
+  color: white;
 }
 
 .subresback {
