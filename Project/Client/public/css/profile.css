@@ -1,0 +1,16 @@
+* .navContainer {
+    text-align: center;
+  }
+  .navMenu {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  #profButton {
+    font-weight: bold;
+    background-color: rgb(164, 158, 158);
+  }
+  .backsave {
+    text-align: center;
+  }
