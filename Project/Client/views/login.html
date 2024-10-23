@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-</head>
-<body>
+    <link rel="stylesheet" href="../public/css/global.css" />
+    <link rel="stylesheet" href="../public/css/login.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/registration">Registration</a></li>
+        <li><a href="/profile">Profile</a></li>
+      </ul>
+    </nav>
     <h1>Login here!</h1>
     <form id="login">
-        <label for="userName">Username: </label><br />
+      <label for="userName">Username: </label><br />
       <input type="text" id="userName" name="userName" required />
       <br /><br />
       <label for="passWord">Password: </label><br />
       <input type="text" id="passWord" name="passWord" required />
       <br /><br />
     </form>
-    <button type="button" onclick="goBack()">Back</button>
-    
-</body>
+    <button type="submit" form="login" value="submit">Submit</button>
+    <button type="button" onclick="goBack()" form="login">Back</button>
+  </body>
+  <script src="../js/registration.js"></script>
 </html>

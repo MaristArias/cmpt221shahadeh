@@ -1,51 +1,67 @@
-* .navContainer {
-    text-align: center;
-  }
-  button{
-    cursor: pointer;
-  }
-  .navMenu {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 50px;
-    border: none;
-  }
-  #profButton {
-    font-weight: bold;
-    background-color: rgb(164, 158, 158);
-  }
-  .backsave {
-    text-align: center;
+* body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+nav {
+  text-align: center;
+  background: #007bff; /*primary color */
+  color: #fff;
+  padding: 15px 0;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+nav ul li {
+  margin: 0 20px;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
+}
 
-  }
-  .styleSelect{
-    outline: auto;
-    color: white;
-  }
+button {
+  cursor: pointer;
+}
 
-  body{
-    background-color: black;
-  }
-  ol{
-    color: white;
-  }
-  .proflist {
-    padding-left: 0;
-  }
-  
-  .proflist-item {
-    list-style-type: none; 
-    position: relative;
-    padding-left: 120px; 
-    margin-bottom: 10px; 
-  }
-  
-  .proflist-item::before {
-    content: attr(data-label); 
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-  }
-  
+#profButton {
+  font-weight: bold;
+  background-color: rgb(164, 158, 158);
+}
+.backsave {
+  text-align: center;
+}
+.styleSelect {
+  outline: auto;
+  color: white;
+}
+
+ol {
+  color: rgb(0, 0, 0);
+}
+.proflist {
+  padding-left: 0;
+}
+
+.proflist-item {
+  list-style-type: none;
+  position: relative;
+  padding-left: 120px;
+  margin-bottom: 10px;
+}
+
+.proflist-item::before {
+  content: attr(data-label);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
