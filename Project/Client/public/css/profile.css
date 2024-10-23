@@ -36,14 +36,14 @@
   }
   
   .proflist-item {
-    list-style-type: none; /* Hide default numbers */
+    list-style-type: none; 
     position: relative;
-    padding-left: 120px; /* Adjust for label spacing */
-    margin-bottom: 10px; /* Optional: Add some spacing between items */
+    padding-left: 120px; 
+    margin-bottom: 10px; 
   }
   
   .proflist-item::before {
-    content: attr(data-label); /* Use the data-label for custom text */
+    content: attr(data-label); 
     position: absolute;
     left: 0;
     font-weight: bold;
