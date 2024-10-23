@@ -1,11 +1,16 @@
 * .navContainer {
     text-align: center;
   }
+  button{
+    cursor: pointer;
+  }
   .navMenu {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
+    border-radius: 50px;
+    border: none;
   }
   #profButton {
     font-weight: bold;
@@ -13,4 +18,13 @@
   }
   .backsave {
     text-align: center;
+
+  }
+  .styleSelect{
+    outline: auto;
+    color: white;
+  }
+
+  body{
+    background-color: black;
   }
