@@ -1,4 +1,3 @@
-/* Make the splash page background cover the whole page */
 body {
     background-image: url('/images/news_background.jpg');
     background-size: cover;
@@ -26,7 +25,41 @@ body {
     animation: fadeInOut 2s infinite;
 }
 
-/* Animation to fade in and out the message */
+.splash-title {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 500px; 
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.text-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 500px; 
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.splash-message {
+    font-size: 1.5rem;
+    animation: fadeInOut 2s infinite; 
+}
+
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
 @keyframes fadeInOut {
     0%, 100% {
         opacity: 1;

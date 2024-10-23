@@ -6,5 +6,5 @@ document.addEventListener('keydown', function(event) {
 });
 
 document.querySelector('.splash-message').addEventListener('click', function() {
-    window.location.href = '/home';
+    window.location.href = '*/home';
 });

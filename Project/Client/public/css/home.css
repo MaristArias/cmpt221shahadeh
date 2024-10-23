@@ -1,0 +1,94 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+nav {
+    background: #007BFF; /*primary color */
+    color: #fff;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#news-container {
+    margin: 20px auto;
+    max-width: 800px; /*center the container */
+    padding: 10px;
+}
+
+.news-article {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px; /*rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*shadow */
+    transition: transform 0.2s; /*animation for hover */
+}
+
+.news-article:hover {
+    transform: scale(1.02); /*slightly enlarge on hover */
+}
+
+.news-article h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+.news-article p {
+    font-size: 16px;
+}
+
+.news-article a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px; /*rounded corners */
+    transition: background 0.3s;
+}
+
+.news-article a:hover {
+    background: #0056b3; /*darker blue on hover */
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column; /*stack items vertically */
+        align-items: center;
+    }
+    
+    .news-article {
+        padding: 10px; /*less padding on small screens */
+    }
+}
