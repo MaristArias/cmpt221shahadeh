@@ -14,7 +14,16 @@
       <button class="navMenu" id="profButton">Profile</button>
     </div>
     <!-- do a form here (or a ul) that has editable fields for name and number and email, maybe do a light and dark mode too-->
-
+    <div id="profile">
+        <ol class="proflist">
+          <li class="proflist-item" data-label="First name">John</li>
+          <li class="proflist-item" data-label="Last name">Doe</li>
+          <li contenteditable="true" class="proflist-item" data-label="Email">john.doe@example.com</li>
+          <li contenteditable="true" class="proflist-item" data-label="Phone number">123-456-7890</li>
+          <li contenteditable="true" class="proflist-item" data-label="Address">123 Maple Street</li>
+        </ol>
+      </div>
+      
     <div class="styleSelect">
     <h2>Visual Preferences</h2>
     <input type="radio" id="light" name="lORd" value="LIGHT">
