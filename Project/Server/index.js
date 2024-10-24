@@ -5,6 +5,8 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const dataFilePath = './data.json';
+
 app.use(express.static("Client/public"));
 
 app.get("/", function (req, res) {
@@ -34,6 +36,30 @@ app.post("/submit_form", (req, res) => {
   const phoneNumber = req.body.phoneNumber; // Access the phone number
   const email = req.body.email; // Access the email
 
+  fs.readFile(dataFilePath, (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Server error');
+    }
+    
+    // Parse the existing data
+    let jsonData = [];
+    if (data.length > 0) {
+      jsonData = JSON.parse(data);
+    }
+
+    // Add new entry
+    jsonData.push(formEntry);
+
+    // Write updated data back to the file
+    fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error saving data');
+      }
+    });
+  });
+
   // Log the extracted data to the console
   console.log(`First Name submitted: ${firstName}`);
   console.log(`Last Name submitted: ${lastName}`);
@@ -43,6 +69,18 @@ app.post("/submit_form", (req, res) => {
 
   // Send a success response back to the client
   res.redirect("/login");
+
+// Route to access the stored data later
+  app.get("/get_data", (req, res) => {
+    fs.readFile(dataFilePath, (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error reading data');
+      }
+  
+      res.json(JSON.parse(data)); // Send the stored data as JSON
+    });
+  });
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
