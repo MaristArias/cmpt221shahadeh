@@ -3,7 +3,7 @@ const fs = require("fs"); // Import fs (File System)
 const app = express();
 const port = 3000;
 
-const dataFilePath = './server/data.json'; // Path to store data
+const dataFilePath = "./server/data.json"; // Path to store data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -31,7 +31,7 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/data.json", (req, res) => {
-  res.sendFile(dataFilePath, { root: __dirname });
+  res.sendFile("data.json", { root: "./Server" });
 });
 
 // POST route to handle form submissions
@@ -55,7 +55,7 @@ app.post("/submit_form", (req, res) => {
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('Server error'); // Send error response
+      return res.status(500).send("Server error"); // Send error response
     }
 
     // Parse the existing data
@@ -71,7 +71,7 @@ app.post("/submit_form", (req, res) => {
     fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
         console.error(err);
-        return res.status(500).send('Error saving data'); // Send error response
+        return res.status(500).send("Error saving data"); // Send error response
       }
 
       // Send a success response after writing is done
@@ -85,7 +85,7 @@ app.get("/get_data", (req, res) => {
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('Error reading data'); // Send error response
+      return res.status(500).send("Error reading data"); // Send error response
     }
 
     res.json(JSON.parse(data)); // Send the stored data as JSON
