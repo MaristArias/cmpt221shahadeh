@@ -24,12 +24,12 @@ app.get("/login", (req, res) => {
   res.sendFile("login.html", { root: "./Client/views" });
 });
 
-app.post("/submit_form", (req, res) => {
-  const firstName = req.body["First Name"]; // Access the first name
-  const lastName = req.body["Last Name"]; // Access the last name
-  const dateOfBirth = req.body["Date of Birth"]; // Access the date of birth
-  const phoneNumber = req.body["Phone Number"]; // Access the phone number
-  const email = req.body["Email"]; // Access the email
+app.post('/submit_form', (req, res) => {
+  const firstName = req.body.firstName; // Access the first name
+  const lastName = req.body.lastName;   // Access the last name
+  const dateOfBirth = req.body.dateOfBirth; // Access the date of birth
+  const phoneNumber = req.body.phoneNumber; // Access the phone number
+  const email = req.body.email; // Access the email
 
   // Log the extracted data to the console
   console.log(`First Name submitted: ${firstName}`);
@@ -39,9 +39,8 @@ app.post("/submit_form", (req, res) => {
   console.log(`Email submitted: ${email}`);
 
   // Send a success response back to the client
-  res.send("Form submitted successfully!");
+  res.send('Form submitted successfully!');
 });
-
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
