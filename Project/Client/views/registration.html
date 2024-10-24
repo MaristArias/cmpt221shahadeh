@@ -4,20 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration</title>
-    <link rel="stylesheet" href="../css/registration.css" />
+    <link rel="stylesheet" href="/css/registration.css" />
   </head>
   <body>
-    <div class="navContainer">
-      <a href="/home">
-        <button class="navMenu">Home</button>
-      </a>
-      <button class="navMenu" id="regButton">Registration</button>
-      <a href="/login">
-        <button class="navMenu">Login</button>
-      </a>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/registration">Registration</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
 
-    <form id="myForm">
+    <form action="/submit_form" id="myForm" method="post">
       <label for="FirstName">First Name: </label><br />
       <input type="text" id="firstName" name="First Name" required />
       <br /><br />
@@ -43,5 +41,5 @@
       <button type="reset" form="myForm" value="Reset">Reset</button>
     </div>
   </body>
-  <script src="../js/registration.js"></script>
+  <script src="/js/registration.js"></script>
 </html>

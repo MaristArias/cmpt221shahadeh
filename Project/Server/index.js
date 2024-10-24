@@ -24,6 +24,12 @@ app.get("/login", (req, res) => {
   res.sendFile("login.html", { root: "./Client/views" });
 });
 
+app.post(`/submit_form`, function (req, res) {
+  const name = req.body.name;
+  console.log(`Name submitted: ${name}`);
+  res.send(`Form Submitted Successfully!`);
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
