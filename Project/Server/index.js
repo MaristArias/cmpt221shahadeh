@@ -1,12 +1,11 @@
-const fs = require('fs');
 const express = require("express");
 const app = express();
 const port = 3000;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 const dataFilePath = './data.json';
+// Middleware to parse URL-encoded form data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Optional for parsing JSON data
 
 app.use(express.static("Client/public"));
 
@@ -30,12 +29,21 @@ app.get("/login", (req, res) => {
   res.sendFile("login.html", { root: "./Client/views" });
 });
 
+// POST route to handle form submissions
 app.post("/submit_form", (req, res) => {
   const firstName = req.body.firstName; // Access the first name
   const lastName = req.body.lastName; // Access the last name
   const dateOfBirth = req.body.dateOfBirth; // Access the date of birth
   const phoneNumber = req.body.phoneNumber; // Access the phone number
   const email = req.body.email; // Access the email
+
+  // Log the extracted data to the console
+  console.log(`First Name submitted: ${firstName}`);
+  console.log(`Last Name submitted: ${lastName}`);
+  console.log(`Date of Birth submitted: ${dateOfBirth}`);
+  console.log(`Phone Number submitted: ${phoneNumber}`);
+  console.log(`Email submitted: ${email}`);
+
 
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
@@ -61,28 +69,21 @@ app.post("/submit_form", (req, res) => {
     });
   });
 
-  // Log the extracted data to the console
-  console.log(`First Name submitted: ${firstName}`);
-  console.log(`Last Name submitted: ${lastName}`);
-  console.log(`Date of Birth submitted: ${dateOfBirth}`);
-  console.log(`Phone Number submitted: ${phoneNumber}`);
-  console.log(`Email submitted: ${email}`);
-
   // Send a success response back to the client
-  res.redirect("/login");
+  res.redirect("/registration");
+});
 
-// Route to access the stored data later
-  app.get("/get_data", (req, res) => {
-    fs.readFile(dataFilePath, (err, data) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error reading data');
-      }
-  
-      res.json(JSON.parse(data)); // Send the stored data as JSON
-    });
+app.get("/get_data", (req, res) => {
+  fs.readFile(dataFilePath, (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error reading data');
+    }
+
+    res.json(JSON.parse(data)); // Send the stored data as JSON
   });
 });
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
