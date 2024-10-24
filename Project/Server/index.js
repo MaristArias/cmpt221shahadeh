@@ -14,6 +14,10 @@ app.get("/", function (req, res) {
   res.sendFile("index.html", { root: "./Client/views" });
 });
 
+app.get("/loggedin", (req, res) => {
+  res.sendFile("loggedin.html", { root: "./Client/views" });
+});
+
 app.get("/home", (req, res) => {
   res.sendFile("home.html", { root: "./Client/views" });
 });

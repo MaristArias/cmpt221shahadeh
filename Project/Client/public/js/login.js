@@ -4,6 +4,9 @@ function goBack() {
   console.log(location.href);
   //back();
 }
+document.getElementById("myButton").addEventListener("click", function () {
+  window.location.href = "loggedin.html";
+});
 
 window
   .fetch("/data.json")
