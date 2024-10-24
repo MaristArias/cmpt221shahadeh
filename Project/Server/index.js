@@ -71,7 +71,7 @@ app.post("/submit_form", (req, res) => {
       }
 
       // Send a success response after writing is done
-      res.redirect("/registration"); // Redirect to registration page
+      res.redirect("/login"); // Redirect to registration page
     });
   });
 });
