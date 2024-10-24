@@ -45,7 +45,7 @@ app.post("/submit_form", (req, res) => {
   console.log(`Phone Number submitted: ${phoneNumber}`);
   console.log(`Email submitted: ${email}`);
 
-  fs.readFile(dataFilePath, (err, data) => {
+  fs.readFile("dataFilePath", (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).send("Server error");
