@@ -3,7 +3,7 @@ const fs = require("fs"); // Import fs (File System)
 const app = express();
 const port = 3000;
 
-const dataFilePath = './data.json'; // Path to store data
+const dataFilePath = './server/data.json'; // Path to store data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
