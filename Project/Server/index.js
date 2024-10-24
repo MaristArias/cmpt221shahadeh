@@ -43,7 +43,7 @@ app.post("/submit_form", (req, res) => {
   console.log(`Email submitted: ${email}`);
 
   // Send a success response back to the client
-  res.send("Form submitted successfully!");
+  res.redirect("/login");
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
