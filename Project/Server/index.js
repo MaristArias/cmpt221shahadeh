@@ -5,7 +5,6 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 app.use(express.static("Client/public"));
 
 app.get("/", function (req, res) {
@@ -48,15 +47,3 @@ app.post("/submit_form", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
-/* TypeError: Cannot read properties of undefined (reading 'firstName')
-    at /Users/damanjit/Downloads/cmpt221shahadeh/Project/Server/index.js:28:30
-    at Layer.handle [as handle_request] (/Users/damanjit/node_modules/express/lib/router/layer.js:95:5)
-    at next (/Users/damanjit/node_modules/express/lib/router/route.js:149:13)
-    at Route.dispatch (/Users/damanjit/node_modules/express/lib/router/route.js:119:3)
-    at Layer.handle [as handle_request] (/Users/damanjit/node_modules/express/lib/router/layer.js:95:5)
-    at /Users/damanjit/node_modules/express/lib/router/index.js:284:15
-    at Function.process_params (/Users/damanjit/node_modules/express/lib/router/index.js:346:12)
-    at next (/Users/damanjit/node_modules/express/lib/router/index.js:280:10)
-    at serveStatic (/Users/damanjit/node_modules/serve-static/index.js:75:16)
-    at Layer.handle [as handle_request] (/Users/damanjit/node_modules/express/lib/router/layer.js:95:5)*/
