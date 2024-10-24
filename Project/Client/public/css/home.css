@@ -92,3 +92,7 @@ h1 {
     padding: 10px; /*less padding on small screens */
   }
 }
+
+nav ul li a#profileclicked {
+  color: #663399;
+}

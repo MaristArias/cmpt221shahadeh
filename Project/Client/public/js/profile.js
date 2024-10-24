@@ -2,6 +2,8 @@ function goBack() {
   window.history.back();
 }
 
+const links = document.querySelectorAll("nav ul li a");
+
 let tableData = [];
 
 function cloneArray(data) {

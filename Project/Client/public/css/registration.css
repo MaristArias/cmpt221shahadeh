@@ -60,3 +60,7 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+
+nav ul li a#profileclicked {
+  color: #663399;
+}
