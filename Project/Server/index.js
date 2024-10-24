@@ -30,6 +30,10 @@ app.get("/login", (req, res) => {
   res.sendFile("login.html", { root: "./Client/views" });
 });
 
+app.get("/data.json", (req, res) => {
+  res.sendFile(dataFilePath, { root: __dirname });
+});
+
 // POST route to handle form submissions
 app.post("/submit_form", (req, res) => {
   const formEntry = {
