@@ -49,6 +49,7 @@ app.post("/submit_form", (req, res) => {
 
   // Read existing data from the file
   fs.readFile(dataFilePath, (err, data) => {
+  fs.readFile("dataFilePath", (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Server error'); // Send error response
