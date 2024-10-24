@@ -1,9 +1,15 @@
+const fs = require(`fs`);
 const express = require("express");
 const fs = require("fs"); // Import fs (File System)
 const app = express();
 const port = 3000;
 
+<<<<<<< HEAD
 const dataFilePath = './data.json'; // Path to store data
+=======
+const dataFilePath = "./data.json";
+// Middleware to parse URL-encoded form data
+>>>>>>> 4cdbc35447ffbb6251e8e4de3b628fbbf6de5859
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -41,6 +47,7 @@ app.post("/submit_form", (req, res) => {
   };
 
   // Log the extracted data to the console
+<<<<<<< HEAD
   console.log(`First Name submitted: ${formEntry.firstName}`);
   console.log(`Last Name submitted: ${formEntry.lastName}`);
   console.log(`Date of Birth submitted: ${formEntry.dateOfBirth}`);
@@ -52,6 +59,18 @@ app.post("/submit_form", (req, res) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Server error'); // Send error response
+=======
+  console.log(`First Name submitted: ${firstName}`);
+  console.log(`Last Name submitted: ${lastName}`);
+  console.log(`Date of Birth submitted: ${dateOfBirth}`);
+  console.log(`Phone Number submitted: ${phoneNumber}`);
+  console.log(`Email submitted: ${email}`);
+
+  fs.readFile(dataFilePath, (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Server error");
+>>>>>>> 4cdbc35447ffbb6251e8e4de3b628fbbf6de5859
     }
 
     // Parse the existing data
@@ -67,7 +86,11 @@ app.post("/submit_form", (req, res) => {
     fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
         console.error(err);
+<<<<<<< HEAD
         return res.status(500).send('Error saving data'); // Send error response
+=======
+        return res.status(500).send("Error saving data");
+>>>>>>> 4cdbc35447ffbb6251e8e4de3b628fbbf6de5859
       }
 
       // Send a success response after writing is done
@@ -81,7 +104,11 @@ app.get("/get_data", (req, res) => {
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
+<<<<<<< HEAD
       return res.status(500).send('Error reading data'); // Send error response
+=======
+      return res.status(500).send("Error reading data");
+>>>>>>> 4cdbc35447ffbb6251e8e4de3b628fbbf6de5859
     }
 
     res.json(JSON.parse(data)); // Send the stored data as JSON
