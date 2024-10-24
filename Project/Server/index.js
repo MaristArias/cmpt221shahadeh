@@ -25,22 +25,20 @@ app.get("/login", (req, res) => {
 });
 
 app.post('/submit_form', (req, res) => {
-    
-  // Extract the form fields from the submitted data
-  const firstName = req.body['First Name'];      // Extract the 'First Name' field
-  const lastName = req.body['Last Name'];        // Extract the 'Last Name' field
-  const dateOfBirth = req.body['Date of Birth']; // Extract the 'Date of Birth' field
-  const phoneNumber = req.body['Phone Number'];   // Extract the 'Phone Number' field
-  const email = req.body['Email'];                // Extract the 'Email' field
+  const firstName = req.body['First Name']; // Access the first name
+  const lastName = req.body['Last Name'];   // Access the last name
+  const dateOfBirth = req.body['Date of Birth']; // Access the date of birth
+  const phoneNumber = req.body['Phone Number']; // Access the phone number
+  const email = req.body['Email']; // Access the email
 
-  // Log the extracted data to the console (for debugging)
+  // Log the extracted data to the console
   console.log(`First Name submitted: ${firstName}`);
   console.log(`Last Name submitted: ${lastName}`);
   console.log(`Date of Birth submitted: ${dateOfBirth}`);
   console.log(`Phone Number submitted: ${phoneNumber}`);
   console.log(`Email submitted: ${email}`);
 
-  // Send a response back to the client confirming successful submission
+  // Send a success response back to the client
   res.send('Form submitted successfully!');
 });
 
