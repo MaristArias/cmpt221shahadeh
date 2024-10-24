@@ -1,8 +1,9 @@
+const fs = require(`fs`);
 const express = require("express");
 const app = express();
 const port = 3000;
 
-const dataFilePath = './data.json';
+const dataFilePath = "./data.json";
 // Middleware to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // Optional for parsing JSON data
@@ -44,13 +45,12 @@ app.post("/submit_form", (req, res) => {
   console.log(`Phone Number submitted: ${phoneNumber}`);
   console.log(`Email submitted: ${email}`);
 
-
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('Server error');
+      return res.status(500).send("Server error");
     }
-    
+
     // Parse the existing data
     let jsonData = [];
     if (data.length > 0) {
@@ -64,7 +64,7 @@ app.post("/submit_form", (req, res) => {
     fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
         console.error(err);
-        return res.status(500).send('Error saving data');
+        return res.status(500).send("Error saving data");
       }
     });
   });
@@ -77,7 +77,7 @@ app.get("/get_data", (req, res) => {
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('Error reading data');
+      return res.status(500).send("Error reading data");
     }
 
     res.json(JSON.parse(data)); // Send the stored data as JSON
