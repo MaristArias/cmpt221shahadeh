@@ -28,3 +28,6 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+button {
+  margin-left: 700px;
+}
