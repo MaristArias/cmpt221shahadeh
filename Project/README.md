@@ -15,3 +15,4 @@ Anews website built with Node.js, Express, and the News API. Users can view  art
 ## Contributors
 - Wael
 - Dom
+ 

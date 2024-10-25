@@ -1,3 +1,5 @@
+// this is where the news is loaded, we use DOM to pull from the api and display the articles on the home page
+
 document.addEventListener("DOMContentLoaded", async () => {
     const apiKey = 'eedea589086e47008e23d3f482aeafdf'; 
     const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;

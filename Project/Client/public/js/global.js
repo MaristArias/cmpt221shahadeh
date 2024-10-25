@@ -1,3 +1,5 @@
+// allows for the login button to be changed to logout when the user is logged in
+
 const loginNav = document.getElementById("loginButton");
 
 if (localStorage.getItem('loggedIn') === 'true') {

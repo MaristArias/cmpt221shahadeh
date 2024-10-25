@@ -1,3 +1,4 @@
+/* Global styling to be used as a baseline in the event a browser does not support the pages respective stylesheet */
 * {
     box-sizing: border-box;
     margin: 0;

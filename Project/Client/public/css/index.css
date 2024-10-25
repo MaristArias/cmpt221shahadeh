@@ -59,7 +59,7 @@ body {
     height: 100vh;
     text-align: center;
 }
-
+/* animates the space bar */
 @keyframes fadeInOut {
     0%, 100% {
         opacity: 1;
