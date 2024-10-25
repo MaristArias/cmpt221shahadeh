@@ -1,4 +1,6 @@
-* body {
+* 
+/*Same css elements as most other pages, this is the default look of every page*/
+body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;

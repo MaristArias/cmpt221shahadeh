@@ -1,4 +1,6 @@
-* .navContainer {
+* 
+/* Most of this is the same css used in the rest of the pages, there are no real major differences*/
+.navContainer {
   text-align: center;
 }
 button {

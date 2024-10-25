@@ -33,6 +33,8 @@ button {
   cursor: pointer;
 }
 
+/*These CSS elements are for making the profile look presentable. it is to make sure that the elements are aligned correctly*/
+
 #profButton {
   font-weight: bold;
   background-color: rgb(164, 158, 158);
