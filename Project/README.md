@@ -13,6 +13,6 @@ Anews website built with Node.js, Express, and the News API. Users can view  art
 - HTML/CSS and JavaScript
 
 ## Contributors
-- Wael
-- Dom
+- Wael Shahadeh
+- Damanjit Singh
  
