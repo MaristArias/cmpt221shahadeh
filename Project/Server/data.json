@@ -5,5 +5,12 @@
     "dateOfBirth": "0001-02-11",
     "phoneNumber": "2133123",
     "email": "132@eijowpds.com"
+  },
+  {
+    "firstName": "joe",
+    "lastName": "shmoe",
+    "dateOfBirth": "0001-01-01",
+    "phoneNumber": "1111111111",
+    "email": "test@test.test"
   }
 ]
