@@ -1,15 +1,17 @@
 const express = require("express");
-const fs = require("fs"); // Import fs (File System)
+const fs = require("fs");
 const app = express();
 const port = 3000;
 
-const dataFilePath = "./server/data.json"; // Path to store data
+const mainController = require("./controllers/MainController");
+const accountController = require("./controllers/AccountController");
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("Client/public"));
 
-// Routes to serve HTML pages
+const dataFilePath = "./server/data.json";
+
 app.get("/", function (req, res) {
   res.sendFile("index.html", { root: "./Client/views" });
 });
@@ -38,7 +40,12 @@ app.get("/data.json", (req, res) => {
   res.sendFile("data.json", { root: "./Server" });
 });
 
-// POST route to handle form submissions
+app.get("/api/data", mainController.getData);
+app.get("/api/data/:id", mainController.viewDetail);
+app.post("/api/user", accountController.createAccount);
+app.patch("/api/user/:id", accountController.updateAccount);
+app.delete("/api/user/:id", accountController.deleteAccount);
+
 app.post("/submit_form", (req, res) => {
   const formEntry = {
     firstName: req.body.firstName,
@@ -48,51 +55,45 @@ app.post("/submit_form", (req, res) => {
     email: req.body.email,
   };
 
-  // Log the extracted data to the console
-  console.log(`First Name submitted: ${formEntry.firstName}`);
-  console.log(`Last Name submitted: ${formEntry.lastName}`);
-  console.log(`Date of Birth submitted: ${formEntry.dateOfBirth}`);
-  console.log(`Phone Number submitted: ${formEntry.phoneNumber}`);
-  console.log(`Email submitted: ${formEntry.email}`);
-
-  // Read existing data from the file
+    //log the extracted data to the console
+    console.log(`First Name submitted: ${formEntry.firstName}`);
+    console.log(`Last Name submitted: ${formEntry.lastName}`);
+    console.log(`Date of Birth submitted: ${formEntry.dateOfBirth}`);
+    console.log(`Phone Number submitted: ${formEntry.phoneNumber}`);
+    console.log(`Email submitted: ${formEntry.email}`);
+    
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
-      return res.status(500).send("Server error"); // Send error response
+      return res.status(500).send("Server error");
     }
 
-    // Parse the existing data
     let jsonData = [];
     if (data.length > 0) {
       jsonData = JSON.parse(data);
     }
 
-    // Add new entry
     jsonData.push(formEntry);
 
-    // Write updated data back to the file
     fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
         console.error(err);
-        return res.status(500).send("Error saving data"); // Send error response
+        return res.status(500).send("Error saving data");
       }
 
-      // Send a success response after writing is done
-      res.redirect("/login"); // Redirect to registration page
+      res.redirect("/login");
     });
   });
 });
 
-// Route to get stored data
 app.get("/get_data", (req, res) => {
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);
-      return res.status(500).send("Error reading data"); // Send error response
+      return res.status(500).send("Error reading data");
     }
 
-    res.json(JSON.parse(data)); // Send the stored data as JSON
+    res.json(JSON.parse(data));
   });
 });
 
