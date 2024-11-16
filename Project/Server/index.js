@@ -40,8 +40,8 @@ app.get("/data.json", (req, res) => {
   res.sendFile("data.json", { root: "./Server" });
 });
 
-app.get("/api/data", mainController.getData);
-app.get("/api/data/:id", mainController.viewDetail);
+// app.get("/api/data", mainController.getData);
+// app.get("/api/data/:id", mainController.viewDetail);
 app.post("/api/user", accountController.createAccount);
 app.patch("/api/user/:id", accountController.updateAccount);
 app.delete("/api/user/:id", accountController.deleteAccount);
