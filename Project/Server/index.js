@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("Client/public"));
 
-const dataFilePath = "./server/data.json";
+const dataFilePath = "./Server/data.json";
 
 app.get("/", function (req, res) {
   res.sendFile("index.html", { root: "./Client/views" });
@@ -55,13 +55,13 @@ app.post("/submit_form", (req, res) => {
     email: req.body.email,
   };
 
-    //log the extracted data to the console
-    console.log(`First Name submitted: ${formEntry.firstName}`);
-    console.log(`Last Name submitted: ${formEntry.lastName}`);
-    console.log(`Date of Birth submitted: ${formEntry.dateOfBirth}`);
-    console.log(`Phone Number submitted: ${formEntry.phoneNumber}`);
-    console.log(`Email submitted: ${formEntry.email}`);
-    
+  //log the extracted data to the console
+  console.log(`First Name submitted: ${formEntry.firstName}`);
+  console.log(`Last Name submitted: ${formEntry.lastName}`);
+  console.log(`Date of Birth submitted: ${formEntry.dateOfBirth}`);
+  console.log(`Phone Number submitted: ${formEntry.phoneNumber}`);
+  console.log(`Email submitted: ${formEntry.email}`);
+
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error(err);

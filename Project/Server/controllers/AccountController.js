@@ -1,5 +1,5 @@
-const fs = require('fs');
-const dataFilePath = './server/accounts.json';
+const fs = require("fs");
+const dataFilePath = "./server/accounts.json";
 
 //method to create a new account
 exports.createAccount = (req, res) => {
@@ -18,7 +18,7 @@ exports.createAccount = (req, res) => {
   //read the existing accounts from the file
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
-      return res.status(500).send('Error reading data');
+      return res.status(500).send("Error reading data");
     }
 
     //parse the data, if it exists
@@ -33,7 +33,7 @@ exports.createAccount = (req, res) => {
     //write the updated accounts back to the file
     fs.writeFile(dataFilePath, JSON.stringify(accounts, null, 2), (err) => {
       if (err) {
-        return res.status(500).send('Error saving account');
+        return res.status(500).send("Error saving account");
       }
       res.status(201).json(newAccount); //send the newly created account
     });
@@ -48,7 +48,7 @@ exports.updateAccount = (req, res) => {
   //read the existing accounts from the file
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
-      return res.status(500).send('Error reading data');
+      return res.status(500).send("Error reading data");
     }
 
     //parse the data
@@ -57,10 +57,10 @@ exports.updateAccount = (req, res) => {
 
     //if account is not found, return a 404
     if (!account) {
-      return res.status(404).send('Account not found');
+      return res.status(404).send("Account not found");
     }
 
-    //wupdate account fields
+    //update account fields
     account.firstName = firstName || account.firstName;
     account.lastName = lastName || account.lastName;
     account.email = email || account.email;
@@ -69,7 +69,7 @@ exports.updateAccount = (req, res) => {
     //write the updated accounts back to the file
     fs.writeFile(dataFilePath, JSON.stringify(accounts, null, 2), (err) => {
       if (err) {
-        return res.status(500).send('Error updating account');
+        return res.status(500).send("Error updating account");
       }
       res.json(account); //send the updated account details
     });
@@ -83,7 +83,7 @@ exports.deleteAccount = (req, res) => {
   //read the existing accounts from the file
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
-      return res.status(500).send('Error reading data');
+      return res.status(500).send("Error reading data");
     }
 
     //parse the data
@@ -93,9 +93,9 @@ exports.deleteAccount = (req, res) => {
     //write the updated accounts back to the file
     fs.writeFile(dataFilePath, JSON.stringify(accounts, null, 2), (err) => {
       if (err) {
-        return res.status(500).send('Error deleting account');
+        return res.status(500).send("Error deleting account");
       }
-      res.status(200).send('Account deleted'); //confirm account deletion
+      res.status(200).send("Account deleted"); //confirm account deletion
     });
   });
 };
