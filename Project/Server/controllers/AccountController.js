@@ -11,7 +11,7 @@ exports.createAccount = (req, res) => {
     firstName,
     lastName,
     email,
-    phoneNumber,
+    phoneNumber, 
     createdOn: new Date(),
   };
 
