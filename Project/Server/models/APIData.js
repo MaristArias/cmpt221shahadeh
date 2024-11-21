@@ -1,19 +1,19 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 class APIData {
-    //connects to file
+  //connects to file
   constructor() {
-    this.dataFilePath = path.join(__dirname, '..', 'data.json'); 
+    this.dataFilePath = path.join(__dirname, "..", "data.json");
   }
 
-  ///read data.json
+  /*  ///read data.json
   readData() {
     try {
-      const data = fs.readFileSync(this.dataFilePath, 'utf-8');
+      const data = fs.readFileSync(this.dataFilePath, "utf-8");
       return JSON.parse(data);
     } catch (err) {
-      console.error('Error reading data file:', err);
+      console.error("Error reading data file:", err);
       return [];
     }
   }
@@ -21,9 +21,13 @@ class APIData {
   //write data.json
   writeData(data) {
     try {
-      fs.writeFileSync(this.dataFilePath, JSON.stringify(data, null, 2), 'utf-8');
+      fs.writeFileSync(
+        this.dataFilePath,
+        JSON.stringify(data, null, 2),
+        "utf-8"
+      );
     } catch (err) {
-      console.error('Error writing data to file:', err);
+      console.error("Error writing data to file:", err);
     }
   }
 
@@ -36,7 +40,7 @@ class APIData {
   //get user id
   getUserById(userId) {
     const users = this.readData();
-    return users.find(user => user.userId === parseInt(userId));
+    return users.find((user) => user.userId === parseInt(userId));
   }
 
   //user adder
@@ -52,9 +56,13 @@ class APIData {
   //profile updater
   updateUser(userId, updatedUser) {
     const users = this.readData();
-    const index = users.findIndex(user => user.userId === parseInt(userId));
+    const index = users.findIndex((user) => user.userId === parseInt(userId));
     if (index !== -1) {
-      users[index] = { ...users[index], ...updatedUser, lastAccess: new Date() };
+      users[index] = {
+        ...users[index],
+        ...updatedUser,
+        lastAccess: new Date(),
+      };
       this.writeData(users);
       return true;
     }
@@ -64,13 +72,27 @@ class APIData {
   //profile deleter
   deleteUser(userId) {
     const users = this.readData();
-    const index = users.findIndex(user => user.userId === parseInt(userId));
+    const index = users.findIndex((user) => user.userId === parseInt(userId));
     if (index !== -1) {
       users.splice(index, 1);
       this.writeData(users);
       return true;
     }
     return false;
+  }
+  */
+  getData() {
+    const dataFilePath = path.join(__dirname, "../data.json");
+    const data = fs.readFileSync(dataFilePath, "utf-8");
+    return JSON.parse(data);
+  }
+  extractId() {
+    const dataFilePath = path.join(__dirname, "../data.json");
+    const data = fs.readFileSync(dataFilePath, "utf-8");
+    const parsedData = JSON.parse(data);
+    console.log(parsedData.length);
+    console.log(parsedData.articles[4]);
+    return parsedData.articles[4].source.id;
   }
 }
 

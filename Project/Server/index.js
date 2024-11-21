@@ -46,6 +46,7 @@ app.post("/api/user", accountController.createAccount);
 app.patch("/api/user/:id", accountController.updateAccount);
 app.delete("/api/user/:id", accountController.deleteAccount);
 app.get("/api/data", mainController.getData);
+app.get("/api/data/:Id", mainController.getId);
 
 app.post("/submit_form", (req, res) => {
   const formEntry = {
