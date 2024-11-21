@@ -1,0 +1,4 @@
+MainController:
+
+invoke getData in postman using: localhost:3000/api/data
+invoke getId in postman using: localhost:3000/api/data/(desired id) 

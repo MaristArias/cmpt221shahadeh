@@ -82,17 +82,46 @@ class APIData {
   }
   */
   getData() {
-    const dataFilePath = path.join(__dirname, "../data.json");
-    const data = fs.readFileSync(dataFilePath, "utf-8");
-    return JSON.parse(data);
+    try {
+      //path to the data file
+      const dataFilePath = path.join(__dirname, "../data.json");
+      //log the file path
+      console.log("Data file path:", dataFilePath);
+      // Read the data from the file
+      const data = fs.readFileSync(dataFilePath, "utf-8");
+      // log the data
+      console.log("Raw data read from file:", data);
+      // Parse and return the JSON data
+      const parsedData = JSON.parse(data);
+      //log the parsed data
+      console.log("Parsed data:", parsedData);
+      return parsedData;
+    } catch (error) {
+      // Log any errors
+      console.error("Error in getData:", error);
+      // Throw error
+      throw new Error("Error reading or parsing data from data.json");
+    }
   }
-  extractId() {
+
+  extractId(id) {
     const dataFilePath = path.join(__dirname, "../data.json");
     const data = fs.readFileSync(dataFilePath, "utf-8");
     const parsedData = JSON.parse(data);
-    console.log(parsedData.length);
-    console.log(parsedData.articles[4]);
-    return parsedData.articles[4].source.id;
+    // Ensure articles array exists
+    if (!parsedData.articles || !Array.isArray(parsedData.articles)) {
+      throw new Error("Articles data is missing or not an array in data.json");
+    }
+    // Find the article with the matching id
+    const article = parsedData.articles.find(
+      (article) => article.source && article.source.id === id
+    );
+    // throw an error if you can't find the article
+    if (!article) {
+      throw new Error(`No article found with source ID: ${id}`);
+    }
+    // Return the entire article upon searching for the id
+    return article;
   }
 }
 
