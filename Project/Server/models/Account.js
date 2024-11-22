@@ -31,7 +31,7 @@ class Account {
     };
   }
 
-  /*  ///read data.json
+   ///read data.json
   readData() {
     try {
       const data = fs.readFileSync(this.dataFilePath, "utf-8");
@@ -104,7 +104,7 @@ class Account {
     }
     return false;
   }
-  */
+  
 }
 
 module.exports = Account;
