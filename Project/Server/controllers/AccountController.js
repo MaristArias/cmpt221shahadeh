@@ -1,101 +1,105 @@
-const fs = require("fs");
-const dataFilePath = "./server/accounts.json";
+// controllers/AccountController.js
 
-//method to create a new account
-exports.createAccount = (req, res) => {
+const Account = require('../models/Account');  // Assuming you're using Mongoose for MongoDB
+
+// Create a new account
+exports.createAccount = async (req, res) => {
   const { firstName, lastName, email, phoneNumber } = req.body;
 
-  //create a new account object
-  const newAccount = {
-    id: Date.now(), //assigning a unique id based on current timestamp
-    firstName,
-    lastName,
-    email,
-    phoneNumber, 
-    createdOn: new Date(),
-  };
+  // Basic validation for required fields
+  if (!firstName || !lastName || !email) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
 
-  //read the existing accounts from the file
-  fs.readFile(dataFilePath, (err, data) => {
-    if (err) {
-      return res.status(500).send("Error reading data");
-    }
-
-    //parse the data, if it exists
-    let accounts = [];
-    if (data.length > 0) {
-      accounts = JSON.parse(data);
-    }
-
-    //add the new account to the list
-    accounts.push(newAccount);
-
-    //write the updated accounts back to the file
-    fs.writeFile(dataFilePath, JSON.stringify(accounts, null, 2), (err) => {
-      if (err) {
-        return res.status(500).send("Error saving account");
-      }
-      res.status(201).json(newAccount); //send the newly created account
+  try {
+    // Create a new account document
+    const newAccount = new Account({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      createdOn: new Date(),
+      lastAccess: new Date(),
     });
-  });
+
+    // Save the new account in the database
+    await newAccount.save();
+
+    // Respond with a success message and the created account data
+    res.status(201).json({ message: 'Account created successfully', user: newAccount });
+  } catch (error) {
+    console.error('Error creating account:', error);
+    res.status(500).json({ error: 'Failed to create account' });
+  }
 };
 
-//method to update an existing account
-exports.updateAccount = (req, res) => {
-  const { id } = req.params; //account id to update
+// Update an account
+exports.updateAccount = async (req, res) => {
+  const { id } = req.params;
   const { firstName, lastName, email, phoneNumber } = req.body;
 
-  //read the existing accounts from the file
-  fs.readFile(dataFilePath, (err, data) => {
-    if (err) {
-      return res.status(500).send("Error reading data");
+  try {
+    const updatedAccount = await Account.findByIdAndUpdate(
+      id,
+      { firstName, lastName, email, phoneNumber, lastAccess: new Date() },
+      { new: true }
+    );
+
+    if (!updatedAccount) {
+      return res.status(404).json({ error: 'Account not found' });
     }
 
-    //parse the data
-    let accounts = JSON.parse(data);
-    const account = accounts.find((account) => account.id === parseInt(id));
+    res.status(200).json({ message: 'Account updated successfully', user: updatedAccount });
+  } catch (error) {
+    console.error('Error updating account:', error);
+    res.status(500).json({ error: 'Failed to update account' });
+  }
+};
 
-    //if account is not found, return a 404
+// Delete an account
+exports.deleteAccount = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedAccount = await Account.findByIdAndDelete(id);
+
+    if (!deletedAccount) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+
+    res.status(200).json({ message: 'Account deleted successfully', user: deletedAccount });
+  } catch (error) {
+    console.error('Error deleting account:', error);
+    res.status(500).json({ error: 'Failed to delete account' });
+  }
+};
+
+// Get an account by ID
+exports.getAccountById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const account = await Account.findById(id);
+
     if (!account) {
-      return res.status(404).send("Account not found");
+      return res.status(404).json({ error: 'Account not found' });
     }
 
-    //update account fields
-    account.firstName = firstName || account.firstName;
-    account.lastName = lastName || account.lastName;
-    account.email = email || account.email;
-    account.phoneNumber = phoneNumber || account.phoneNumber;
-
-    //write the updated accounts back to the file
-    fs.writeFile(dataFilePath, JSON.stringify(accounts, null, 2), (err) => {
-      if (err) {
-        return res.status(500).send("Error updating account");
-      }
-      res.json(account); //send the updated account details
-    });
-  });
+    res.status(200).json(account);
+  } catch (error) {
+    console.error('Error fetching account:', error);
+    res.status(500).json({ error: 'Failed to fetch account' });
+  }
 };
 
-//method to delete an account
-exports.deleteAccount = (req, res) => {
-  const { id } = req.params; //account id to delete
+// Get all accounts (optional)
+exports.getAllAccounts = async (req, res) => {
+  try {
+    const accounts = await Account.find();
 
-  //read the existing accounts from the file
-  fs.readFile(dataFilePath, (err, data) => {
-    if (err) {
-      return res.status(500).send("Error reading data");
-    }
-
-    //parse the data
-    let accounts = JSON.parse(data);
-    accounts = accounts.filter((account) => account.id !== parseInt(id));
-
-    //write the updated accounts back to the file
-    fs.writeFile(dataFilePath, JSON.stringify(accounts, null, 2), (err) => {
-      if (err) {
-        return res.status(500).send("Error deleting account");
-      }
-      res.status(200).send("Account deleted"); //confirm account deletion
-    });
-  });
+    res.status(200).json(accounts);
+  } catch (error) {
+    console.error('Error fetching accounts:', error);
+    res.status(500).json({ error: 'Failed to fetch accounts' });
+  }
 };
