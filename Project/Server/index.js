@@ -3,9 +3,16 @@ const fs = require("fs");
 const path = require("path");
 const app = express();
 const port = 3000;
+const mongoose = require("mongoose");
 
 const mainController = require("./controllers/MainController");
 const accountController = require("./controllers/AccountController");
+
+// MongoDB connection
+const mongoURI = 'mongodb://localhost:27017/'; // replace with your MongoDB URI
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.log('Error connecting to MongoDB:', err));
 
 // Using express built-in middleware for handling URL-encoded data and JSON
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +23,12 @@ app.use(express.static("Client/public"));
 
 // Path to the data file
 const dataFilePath = "./Server/data.json";
+
+app.post('/register', (req, res) => {
+  console.log('Received registration request:', req.body);
+  // This is the response message sent back to the client
+  res.json({ message: 'Registration successful' });
+});
 
 // Route for the home page (index)
 app.get("/", (req, res) => {
@@ -62,9 +75,9 @@ apiRouter.get("/data", mainController.getData);
 apiRouter.get("/data/:id", mainController.getId);
 
 // Routes for user operations (create, update, delete)
-apiRouter.post("/user", accountController.createAccount);
+apiRouter.post("/users", accountController.createAccount);
 apiRouter.patch("/user/:id", accountController.updateAccount);
-apiRouter.delete("/user/:id", accountController.deleteAccount);
+apiRouter.delete("/users/:id", accountController.deleteAccount);
 
 
 // Mount the API router on "/api"
